@@ -1,4 +1,4 @@
-Android Simple Calculator with some math.operations:
+Android Calculator with some math.operations:
 
 1)Addition
 
