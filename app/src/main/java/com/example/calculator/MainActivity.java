@@ -124,9 +124,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-//                if (EditText_1 == null) {
-//                    EditText_1.setText("");
-//                }
+                try
+                {
                 if(TextUtils.isEmpty(EditText_1.getText().toString())){
                     Toast.makeText(MainActivity.this,"Input value first!",Toast.LENGTH_SHORT).show();
                 }
@@ -134,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
                     ValueOne = Float.parseFloat(EditText_1.getText() + "");
                     Substraction = true;
                     EditText_1.setText(null);
+                }}
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
 
                 if(TextUtils.isEmpty(EditText_1.getText().toString())){
                     Toast.makeText(MainActivity.this,"Input value first!",Toast.LENGTH_SHORT).show();
@@ -149,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
                     ValueOne = Float.parseFloat(EditText_1.getText() + "");
                     Difference = true;
                     EditText_1.setText(null);
+                }}
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -156,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
         buttonMulti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
                 if(TextUtils.isEmpty(EditText_1.getText().toString())){
                     Toast.makeText(MainActivity.this,"Input value first!",Toast.LENGTH_SHORT).show();
                 }
@@ -165,77 +174,68 @@ public class MainActivity extends AppCompatActivity {
                     EditText_1.setText(null);
                 }
             }
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }}
         });
 
         buttonDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try{
                 if (TextUtils.isEmpty(EditText_1.getText().toString())) {
                     Toast.makeText(MainActivity.this, "Input value first!", Toast.LENGTH_SHORT).show();
                 } else {
                     ValueOne = Float.parseFloat(EditText_1.getText() + "");
                     Division = true;
                     EditText_1.setText(null);
-                }
+                }}
+                catch (NumberFormatException ex) {
+                        EditText_1.setText(null);
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 
         buttonEquals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(EditText_1.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Make some math operation!", Toast.LENGTH_SHORT).show();
-                } else
-                ValueTwo = Float.parseFloat(EditText_1.getText() + "");
 
-                if (Substraction) {
-                    EditText_1.setText(ValueOne + ValueTwo + "");
-                    Substraction = false;
+                try {
+                    if (TextUtils.isEmpty(EditText_1.getText().toString())) {
+                        Toast.makeText(MainActivity.this, "Make some math operation!", Toast.LENGTH_SHORT).show();
+                    } else
+                        ValueTwo = Float.parseFloat(EditText_1.getText() + "");
+
+                    if (Substraction) {
+                        EditText_1.setText(ValueOne + ValueTwo + "");
+                        Substraction = false;
+                    }
+
+                    if (Difference) {
+                        EditText_1.setText(ValueOne - ValueTwo + "");
+                        Difference = false;
+                    }
+
+                    if (Multiplication) {
+                        EditText_1.setText(ValueOne * ValueTwo + "");
+                        Multiplication = false;
+                    }
+
+                    if (Division) {
+                        EditText_1.setText(ValueOne / ValueTwo + "");
+                        Division = false;
+                    }
+
+
                 }
-
-                if (Difference) {
-                    EditText_1.setText(ValueOne - ValueTwo + "");
-                    Difference = false;
-                }
-
-                if (Multiplication) {
-                    EditText_1.setText(ValueOne * ValueTwo + "");
-                    Multiplication = false;
-                }
-
-                if (Division) {
-                    EditText_1.setText(ValueOne / ValueTwo + "");
-                    Division = false;
-                }
-
-            }
-        });
-
-        buttonSqrt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(EditText_1.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Input value first!", Toast.LENGTH_SHORT).show();
-                } else {
-                    ValueOne = Float.parseFloat(EditText_1.getText() + "");
-                    EditText_1.setText(Math.sqrt(ValueOne) + "");
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-        buttonPower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (TextUtils.isEmpty(EditText_1.getText().toString())) {
-                    Toast.makeText(MainActivity.this, "Input value first!", Toast.LENGTH_SHORT).show();
-                } else {
-                    ValueOne = Float.parseFloat(EditText_1.getText() + "");
-                    EditText_1.setText(Math.pow(ValueOne,2) + "");
-                }
-            }
-        });
-
-
         buttonSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,6 +253,43 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        buttonSqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                if (TextUtils.isEmpty(EditText_1.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "Input value first!", Toast.LENGTH_SHORT).show();
+                } else {
+                    ValueOne = Float.parseFloat(EditText_1.getText() + "");
+                    EditText_1.setText(Math.sqrt(ValueOne) + "");
+                }
+            }
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }}
+        });
+
+        buttonPower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                if (TextUtils.isEmpty(EditText_1.getText().toString())) {
+                    Toast.makeText(MainActivity.this, "Input value first!", Toast.LENGTH_SHORT).show();
+                } else {
+                    ValueOne = Float.parseFloat(EditText_1.getText() + "");
+                    EditText_1.setText(Math.pow(ValueOne,2) + "");
+                }
+            }
+                catch (NumberFormatException ex) {
+                    EditText_1.setText(null);
+                    Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                }}
+        });
+
+
+
 
 
         buttonC.setOnClickListener(new View.OnClickListener() {
