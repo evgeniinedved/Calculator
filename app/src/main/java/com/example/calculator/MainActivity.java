@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         button0 = (Button) findViewById(R.id.button0);
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         buttonSign = (Button) findViewById(R.id.buttonSign);
         buttonPower = (Button) findViewById(R.id.buttonPower);
         EditText_1 = (EditText) findViewById(R.id.editText);
-
+        EditText_1.setEnabled(false);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,6 +307,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText_1.setText(EditText_1.getText() + ".");
             }
         });
+
+        
     }
 }
 
